@@ -1,7 +1,7 @@
 export default class Mole {
-  constructor(hole, onWhack) {  //hole element for every mole instance created, whackMole {score ++} store
+  constructor(hole, onWhack) {
     this.hole = hole;
-    this.onWhack = onWhack; 
+    this.onWhack = onWhack;
     this.active = false;
     this.timeout = null;
     this.moleImage = document.createElement("img");
@@ -11,28 +11,25 @@ export default class Mole {
   }
 
   emerge() {
-   
     this.active = true;
-    // this.hole.classList.add("active");   USE LATER
-    this.hole.appendChild(this.moleImage); //set mole image in hole (DOM)
-/*store id */this.timeout = setTimeout(() => this.hide(), 2000);  // try bind this instead of arrow
-    
+
+    this.hole.appendChild(this.moleImage);
+    this.timeout = setTimeout(() => this.hide(), 800);
   }
-//emerge ma hide() timeout ma call hunxa, event occur vayexi manually call
+
   hide() {
     this.active = false;
-    //this.hole.classList.remove("active");   USE LATER
+
     this.hole.removeChild(this.moleImage);
-    clearTimeout(this.timeout);  //to clear mole before 2000 milliseconds ie if i whacked successfuly
+    clearTimeout(this.timeout);
   }
 
   handleClick() {
-   
-      if (this.active == true) { //if mole has emerged ie active true
-        this.onWhack(); 
+    console.log("THIS ONEEEEEEEEEEEE", this.hole);
+    if (this.active == true) {
+      this.onWhack();
 
-        this.hide();
-      }
-    
+      this.hide();
+    }
   }
 }
